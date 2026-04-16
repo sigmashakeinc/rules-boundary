@@ -50,7 +50,7 @@ rule boundary-unstructured-security-logging {
   enabled true
   priority 70
   severity warning
-  ASK write
+  LOG write
   IF path GLOB "**/*" AND content CONTAINS "fmt.Printf(\"Auth failure: user=%s\","
   MESSAGE "The Google `boundary` Style Guide mandates structured logging for all security-relevant events to ensure auditability and efficient incident response. Avoid direct `fmt.Printf` for authentication or authorization failures. Use `boundary.log.security_event()` with structured key-value pairs (e.g., `boundary.log.security_event(\"auth_failure\", {\"user\": username, \"reason\": \"invalid_credentials\", \"ip\": client_ip})`) for better analysis and integration with SIEM systems."
 }
